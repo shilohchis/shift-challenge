@@ -15,11 +15,15 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->char('final', 4);
-            $table->boolean('isIntroversion');
-            $table->boolean('isSensing');
-            $table->boolean('isThinking');
-            $table->boolean('isJudging');
+            $table->char('final', 4)->nullable();
+            $table->unsignedTinyInteger('E')->default(false);
+            $table->unsignedTinyInteger('I')->default(false);
+            $table->unsignedTinyInteger('S')->default(false);
+            $table->unsignedTinyInteger('N')->default(false);
+            $table->unsignedTinyInteger('T')->default(false);
+            $table->unsignedTinyInteger('F')->default(false);
+            $table->unsignedTinyInteger('J')->default(false);
+            $table->unsignedTinyInteger('P')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -12,4 +12,9 @@ class Question extends Model
         'direction',
         'meaning'
     ];
+
+    public function getDirectionAttribute($val)
+    {
+        return intval($val) == -1 ? false : true; 
+    }
 }

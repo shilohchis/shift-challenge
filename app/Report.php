@@ -8,10 +8,14 @@ class Report extends Model
 {
     protected $fillable = [
         'final',
-        'isIntroversion',
-        'isSensing',
-        'isThinking',
-        'isJudging',
+        'E',
+        'I',
+        'S',
+        'N',
+        'T',
+        'F',
+        'J',
+        'P',
         'user_id'
     ];
 
@@ -23,5 +27,10 @@ class Report extends Model
     public function scores()
     {
         return $this->hasMany(Score::class);
+    }
+
+    public function getIsIntroversionAttribute()
+    {
+        return $this->I < $this->E ? false : true;
     }
 }
