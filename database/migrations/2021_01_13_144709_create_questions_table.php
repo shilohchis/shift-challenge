@@ -15,6 +15,10 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->string('desc');
+            $table->enum('dimension', ['EI', 'SN', 'TF', 'JP']);
+            $table->enum('direction', ['1', '-1']);
+            $table->char('meaning', 1);
             $table->timestamps();
         });
     }

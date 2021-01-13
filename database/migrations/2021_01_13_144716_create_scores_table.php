@@ -15,6 +15,12 @@ class CreateScoresTable extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
+            $table->unsignedTinyInteger('answer');
+            $table->unsignedBigInteger('question_id');
+            $table->unsignedBigInteger('report_id');
+            
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('report_id')->references('id')->on('reports');
             $table->timestamps();
         });
     }

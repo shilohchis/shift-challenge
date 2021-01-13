@@ -15,6 +15,13 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->char('final', 4);
+            $table->boolean('isIntroversion');
+            $table->boolean('isSensing');
+            $table->boolean('isThinking');
+            $table->boolean('isJudging');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

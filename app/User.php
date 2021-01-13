@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setEmailAttribute($val)
+    {
+        return $this->attributes['email'] = strtolower($val);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
 }
