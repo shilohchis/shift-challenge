@@ -13,8 +13,13 @@ class Question extends Model
         'meaning'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function getDirectionAttribute($val)
     {
-        return intval($val) == -1 ? false : true; 
+        return intval($val) == -1 ? false : true;
     }
 }

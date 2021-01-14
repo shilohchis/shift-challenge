@@ -29,8 +29,23 @@ class Report extends Model
         return $this->hasMany(Score::class);
     }
 
-    public function getIsIntroversionAttribute()
+    public function getIsIntraversionAttribute()
     {
-        return $this->I < $this->E ? false : true;
+        return $this->I >= $this->E ? true : false;
+    }
+
+    public function getIsSensingAttribute()
+    {
+        return $this->S >= $this->N ? true : false;
+    }
+
+    public function getIsThinkingAttribute()
+    {
+        return $this->T >= $this->F ? true : false;
+    }
+
+    public function getIsJudgingAttribute()
+    {
+        return $this->J >= $this->P ? true : false;
     }
 }

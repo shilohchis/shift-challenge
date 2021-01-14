@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/personality/test');
 });
+
+Route::get('/personality/{any}', 'HomeController@render')->where('any', '.*');

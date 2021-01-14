@@ -18,11 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('questions')->name('question.')->group(function() {
-    Route::get('/', 'QuestionController@index')->name('index');
-});
+Route::group([
+    'namespace' => 'Api',
+], function() {
+    Route::prefix('questions')->name('question.')->group(function() {
+        Route::get('/', 'QuestionController@index')->name('index');
+    });
 
-Route::prefix('answers')->name('answer.')->group(function() {
-    Route::post('/', 'AnswerController@store')->name('store');
-    Route::get('/', 'AnswerController@report')->name('report');
+    Route::prefix('answers')->name('answer.')->group(function() {
+        Route::post('/', 'AnswerController@store')->name('store');
+        Route::get('/', 'AnswerController@report')->name('report');
+    });
 });
