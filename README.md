@@ -2,9 +2,10 @@
 
 # How To
 Make sure you have docker & docker compose installed on your OS
+
 Refer these step by step to run the project using docker
 
-  - Clone from my github repo at https://github.com/shilohchis/shift-challenge.git
+  - Clone my github repo
   - Copy `.env.example` name it `.env`, change the database setup, save it
   - From your terminal, set the current directory to the root of repository, you can see file such Dockerfile, docker-compose.yml
   - Then from your terminal (root folder of the repo) run `docker-compose build app && docker-compose up -d` to install project dependency
