@@ -14,3 +14,4 @@ Refer these step by step to run the project using docker
   - Setup our database tables, with command `docker-compose exec app php artisan migrate`
   - Seeding our questions on database with command `docker-compose exec app php artisan db:seed`
   - Next we'll install vue as our frontend, with `docker run -v $(pwd):/var/www -w /var/www node:10.16.3 npm install && npm run dev`
+  - Open your browser, go to `http://localhost:8000/`
