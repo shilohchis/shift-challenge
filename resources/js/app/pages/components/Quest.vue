@@ -14,15 +14,15 @@
                 </b-form-group>
                 <span class="green text">Agree</span>
             </div>
-            <b-form-text class="error" v-show="errors.value[index].show">{{ errors.value[index].text }}</b-form-text>
+            <small class="error-text" v-show="errors.value[index].show">{{ errors.value[index].text }}</small>
         </b-card>
         <b-card class="bb">
             <b-card-title class="header-title grey">Your Email</b-card-title>
             <b-form-input class="email" v-model="email" placeholder="you@example.com" name="email" required></b-form-input>
-            <b-form-text class="error" v-show="errors.email.show">{{ errors.email }}</b-form-text>
+            <small class="error-text" v-show="errors.email.show">{{ errors.email.text }}</small>
         </b-card>
         <div class="submit-wrapper" @click="onSubmit()">
-            <b-button class="button submit">Save & Continue</b-button>
+            <button class="submit button btn">Save & Continue</button>
         </div>
     </div>
 </template>
@@ -44,7 +44,8 @@ export default {
                     show: false
                 },
                 value: []
-            }
+            },
+            allowSubmit: true
         }
     },
     mounted: async function() {
@@ -66,10 +67,13 @@ export default {
             try {
                 if(!this.email) {
                     this.errors.email.show = true
+                    this.allowSubmit =  false
+                }
+                if(this.value.find(item => item == 0) != undefined) {
+                    this.errors.value = this.errors.value.map(item => { return { ...item, show: true } })
+                    this.allowSubmit =  false
                 } else {
-                    if(this.value.find(item => item == 0) != undefined) {
-                        this.errors.value.each(item => item.show = true)
-                    } else {
+                    if(this.allowSubmit) {
                         const data = { email: this.email }
                         data.answers = this.id.map((val, idx) => { return { id: this.id[idx], value: val } })
                         const resp = await axios.post('/api/answers', data)
@@ -78,6 +82,7 @@ export default {
                         }
                     }
                 }
+                this.allowSubmit = true
             } catch (e) {
                 this.showAlert = true;
             }
@@ -147,5 +152,10 @@ export default {
 .submit {
     background-color: #3D59FA;
     color: white;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.error-text {
+  color: #B00020;
 }
 </style>
